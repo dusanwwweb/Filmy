@@ -13,12 +13,22 @@ public class CatalogueServiceImpl implements FilmyService<Catalogue> {
     @Autowired
     CatalogueRepository catalogueRepository;
 
-  //  public List<Catalogue> getAllCatalogues(){
-    //    return catalogueRepository.findAll();
-    //}
-
     @Override
     public List<Catalogue> getAll() {
         return catalogueRepository.findAll();
     }
+
+    @Override
+    public Catalogue createOne(Catalogue catalogue) {
+        return catalogueRepository.save(catalogue);
+    }
+
+    public Catalogue getById(int id) {
+        return catalogueRepository.findByIdCatalogue(id);
+    }
+
+    public void deleteCatalogueById(int id) {
+        catalogueRepository.deleteById(id);
+    }
+
 }

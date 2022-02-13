@@ -1,46 +1,51 @@
 package com.dusanweb.filmy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "client")
 public class Client {
 
     @Id
-    //Every JPA entity is required to have a field which maps to primary key of the database table.
-    // Such field must be annotated with @Id.
-
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    //The use of the GeneratedValue annotation is only required for simple primary keys.
-    //A simple primary key consists of a single Java field which maps to a single table column.
-
-    //GenerationType.AUTO - This GenerationType indicates that the persistence provider should
-    // automatically pick an appropriate strategy for the particular database.
-    // This is the default GenerationType, i.e. if we just use @GeneratedValue
-    // annotation then this value of GenerationType will be used.
-    @Column(name = "Client_ID", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "client_id", updatable = false, nullable = false)
     private int idClient;
 
-    @Column(name = "Nom")
+    @Column(name = "nom")
     private String nom;
 
-    @Column(name = "Prenom")
+    @Column(name = "prenom")
     private String prenom;
 
-    @Column(name = "Sexe")
+    @Column(name = "sexe")
     private char sexe;
 
-    @Column(name = "Adresse")
+    @Column(name = "adresse")
     private String adresse;
 
-    @Column(name = "Email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "Mot_de_passe")
+    @Column(name = "mot_de_passe")
     private String motDePasse;
+
+    /*
+        JPA RELATIONSHIPS
+    */
+    @JsonIgnore
+    @OneToMany(mappedBy = "client")
+    private Set<Commande> commandes = new HashSet<>();
 }

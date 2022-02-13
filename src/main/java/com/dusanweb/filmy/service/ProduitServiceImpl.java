@@ -8,12 +8,23 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProduitService {
+public class ProduitServiceImpl implements FilmyService<Produit> {
 
     @Autowired
     ProduitRepository produitRepository;
 
-    public List<Produit> getAllProduits(){
+    @Override
+    public List<Produit> getAll() {
         return produitRepository.findAll();
     }
+
+    @Override
+    public Produit createOne(Produit produit) {
+        return produitRepository.save(produit);
+    }
+
+//    @Override
+//    public void deleteOne(Produit produit) {
+//        produitRepository.delete(produit);
+//    }
 }

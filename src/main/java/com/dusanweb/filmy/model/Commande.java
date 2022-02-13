@@ -1,42 +1,54 @@
 package com.dusanweb.filmy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "commande")
 public class Commande {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Ref", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "commande_id", updatable = false, nullable = false)
     private int idCommande;
 
-    @Column(name = "Date_commande")
+    @Column(name = "date_commande")
     private LocalDate dateDeCommande;
 
-    @Column(name = "Type_de_catalogue")
-    private String typeDeCatalogue;
-
-    @Column(name = "Quantite")
+    @Column(name = "quantite")
     private int quantite;
 
-    @Column(name = "Prix")
+    @Column(name = "prix")
     private double prix;
 
-    @Column(name = "Total")
+    @Column(name = "total")
     private double total;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @Column(name = "Client_ID")
-    private Client idClient;
+    /*
+        JPA RELATIONSHIPS
+     */
 
-    @Column(name = "Livraison_ID")
-    private Livraison idLivraison;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_id")
+    private Client client;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "livraison_id")
+    private Livraison livraison;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "commandeSet")
+    private Set<Produit> produitSet = new HashSet<>();
 }

@@ -1,33 +1,37 @@
 package com.dusanweb.filmy.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "employe")
 public class Employe {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Employe_ID", updatable = false, nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "employe_id", updatable = false, nullable = false)
     private int idEmploye;
 
-    @Column(name = "Nom")
+    @Column(name = "nom")
     private String nom;
 
-    @Column(name = "Prenom")
+    @Column(name = "prenom")
     private String prenom;
 
-    @Column(name = "Statut")
+    @Column(name = "statut")
     private String statut;
 
-    @Column(name = "Email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "Mot_de_passe")
+    @Column(name = "mot_de_passe")
     private String motDePasse;
 }
