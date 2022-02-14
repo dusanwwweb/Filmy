@@ -23,6 +23,14 @@ public class ProduitServiceImpl implements FilmyService<Produit> {
         return produitRepository.save(produit);
     }
 
+    public Produit getById(int id) {
+        return produitRepository.findByIdProduit(id);
+    }
+
+    public void deleteProduitById(int id) {
+        produitRepository.deleteById(id);
+    }
+
 //    @Override
 //    public void deleteOne(Produit produit) {
 //        produitRepository.delete(produit);

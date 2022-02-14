@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -47,5 +46,6 @@ public class Client {
     */
     @JsonIgnore
     @OneToMany(mappedBy = "client")
+//    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "client")
     private Set<Commande> commandes = new HashSet<>();
 }

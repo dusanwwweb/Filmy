@@ -31,8 +31,7 @@ public class CatalogueController {
     //OK
     //http://localhost:8080/catalogue/update/7
     @PutMapping("/update/{id}")
-    public ResponseEntity<Catalogue> updateCatalogue(
-            @PathVariable(value = "id") int id, @RequestBody Catalogue catalogueDetails) {
+    public ResponseEntity<Catalogue> updateCatalogue(@PathVariable(value = "id") int id, @RequestBody Catalogue catalogueDetails) {
         Catalogue catalogue = catalogueService.getById(id);
 
         catalogue.setAnneeCatalogue(catalogueDetails.getAnneeCatalogue());

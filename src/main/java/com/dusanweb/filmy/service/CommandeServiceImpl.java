@@ -23,8 +23,11 @@ public class CommandeServiceImpl implements FilmyService<Commande>{
         return commandeRepository.save(commande);
     }
 
-//    @Override
-//    public void deleteOne(Commande commande) {
-//        commandeRepository.delete(commande);
-//    }
+    public Commande getById(int id) {
+        return commandeRepository.findByIdCommande(id);
+    }
+
+    public void deleteCommandeById(int id) {
+        commandeRepository.deleteById(id);
+    }
 }

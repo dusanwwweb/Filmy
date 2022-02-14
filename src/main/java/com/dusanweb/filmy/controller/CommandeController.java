@@ -4,6 +4,8 @@ import com.dusanweb.filmy.model.Commande;
 import com.dusanweb.filmy.service.CommandeServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,10 +24,42 @@ public class CommandeController {
         return commandeService.getAll();
     }
 
+    //NOK
+    //http://localhost:8080/commande/create
     @PostMapping(path = "/create")
     public Commande createOneCommande(@RequestBody Commande commande){
         log.info("201");
         return commandeService.createOne(commande);
     }
+    //OK
+    //http://localhost:8080/commande/update/1
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Commande> updateCommande(@PathVariable(value = "id") int id, @RequestBody Commande commandeDetails) {
+        Commande commande = commandeService.getById(id);
 
+        commande.setDateDeCommande(commandeDetails.getDateDeCommande());
+        commande.setQuantite(commandeDetails.getQuantite());
+        commande.setPrix(commandeDetails.getPrix());
+        commande.setTotal(commandeDetails.getTotal());
+
+        final Commande updatedCommande = commandeService.createOne(commande);
+        return ResponseEntity.ok(updatedCommande);
+    }
+
+    //NOK
+    //http://localhost:8080/commande/5
+    @DeleteMapping("/{id}")
+    public void deleteOneCommande(@PathVariable(value = "id") int id) {
+        log.info("200");
+        commandeService.deleteCommandeById(id);
+    }
+
+    //OK
+    //http://localhost:8080/commande/1
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Commande findCommandeById(@PathVariable(value = "id") int id) {
+        log.info("200");
+        return commandeService.getById(id);
+    }
 }

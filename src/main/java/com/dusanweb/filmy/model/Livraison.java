@@ -32,5 +32,6 @@ public class Livraison {
     */
     @JsonIgnore
     @OneToMany(mappedBy = "livraison")
+//    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "livraison")
     private Set<Commande> commandes = new HashSet<>();
 }
