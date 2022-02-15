@@ -19,7 +19,7 @@ public class ClientController {
     @Autowired
     ClientServiceImpl clientService;
 
-    //OK
+    //http://localhost:8080/client/all
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Client> getAllClients(){
@@ -27,14 +27,13 @@ public class ClientController {
         return clientService.getAll();
     }
 
-    //OK
+    //http://localhost:8080/client/create
     @PostMapping("/create")
     public Client createOneClient(@RequestBody Client client) {
         log.info("201");
         return clientService.createOne(client);
     }
 
-    //OK
     //http://localhost:8080/client/update/7
     @PutMapping("/update/{id}")
     public ResponseEntity<Client> updateClient(
@@ -52,7 +51,6 @@ public class ClientController {
         return ResponseEntity.ok(updatedClient);
     }
 
-    //OK
     //http://localhost:8080/client/6
     @DeleteMapping("/{id}")
     public void deleteOneClient(@PathVariable(value = "id") int id) {
@@ -72,7 +70,6 @@ public class ClientController {
         }
     }
 
-    //OK
     //http://localhost:8080/client/1
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
@@ -82,7 +79,6 @@ public class ClientController {
 
     }
 
-    //OK
     //http://localhost:8080/client/id?id=1
     @GetMapping("id")
     @ResponseStatus(HttpStatus.OK)
@@ -91,7 +87,6 @@ public class ClientController {
         return clientService.getById(id);
     }
 
-    //OK
     //http://localhost:8080/client/sex?sex=f
     @GetMapping("/sex")
     @ResponseStatus(HttpStatus.OK)
@@ -100,7 +95,6 @@ public class ClientController {
         return clientService.getBySex(sexe);
     }
 
-    //OK
     //http://localhost:8080/client/sex/f
     @GetMapping("sex/{sex}")
     @ResponseStatus(HttpStatus.OK)

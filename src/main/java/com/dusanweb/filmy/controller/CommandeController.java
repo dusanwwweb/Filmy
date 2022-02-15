@@ -1,7 +1,9 @@
 package com.dusanweb.filmy.controller;
 
 import com.dusanweb.filmy.model.Commande;
+import com.dusanweb.filmy.model.Produit;
 import com.dusanweb.filmy.service.CommandeServiceImpl;
+import com.dusanweb.filmy.service.ProduitServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,20 +20,19 @@ public class CommandeController {
     @Autowired
     CommandeServiceImpl commandeService;
 
+    //http://localhost:8080/commande/all
     @GetMapping(path = "/all")
     public List<Commande> getAllCommandes(){
         log.info("200");
         return commandeService.getAll();
     }
 
-    //NOK
     //http://localhost:8080/commande/create
     @PostMapping(path = "/create")
     public Commande createOneCommande(@RequestBody Commande commande){
         log.info("201");
         return commandeService.createOne(commande);
     }
-    //OK
     //http://localhost:8080/commande/update/1
     @PutMapping("/update/{id}")
     public ResponseEntity<Commande> updateCommande(@PathVariable(value = "id") int id, @RequestBody Commande commandeDetails) {
@@ -46,7 +47,6 @@ public class CommandeController {
         return ResponseEntity.ok(updatedCommande);
     }
 
-    //NOK
     //http://localhost:8080/commande/5
     @DeleteMapping("/{id}")
     public void deleteOneCommande(@PathVariable(value = "id") int id) {
@@ -54,7 +54,6 @@ public class CommandeController {
         commandeService.deleteCommandeById(id);
     }
 
-    //OK
     //http://localhost:8080/commande/1
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

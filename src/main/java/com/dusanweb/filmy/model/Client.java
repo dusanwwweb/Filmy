@@ -1,9 +1,7 @@
 package com.dusanweb.filmy.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,8 +10,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "client")
 public class Client {
@@ -46,6 +42,5 @@ public class Client {
     */
     @JsonIgnore
     @OneToMany(mappedBy = "client")
-//    @OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "client")
     private Set<Commande> commandes = new HashSet<>();
 }

@@ -1,8 +1,6 @@
 package com.dusanweb.filmy.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,8 +10,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "catalogue")
 public class Catalogue {
@@ -36,4 +32,9 @@ public class Catalogue {
             joinColumns = @JoinColumn(name = "catalogue_id"),
             inverseJoinColumns = @JoinColumn(name = "produit_id"))
     private Set<Produit> produitSet = new HashSet<>();
+
+
+    public void assignProduit(Produit produit) {
+        produitSet.add(produit);
+    }
 }

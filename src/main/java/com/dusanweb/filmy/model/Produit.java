@@ -2,9 +2,7 @@ package com.dusanweb.filmy.model;
 
 import com.dusanweb.filmy.utils.Genre;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -14,8 +12,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "produit")
 public class Produit {
@@ -53,4 +49,8 @@ public class Produit {
             joinColumns = @JoinColumn(name = "produit_id"),
             inverseJoinColumns = @JoinColumn(name = "commande_id"))
     private Set<Commande> commandeSet = new HashSet<>();
+
+    public void assignCommande(Commande commande) {
+        commandeSet.add(commande);
+    }
 }

@@ -12,7 +12,6 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     /*
         Derived Queries with Spring Data JPA
      */
-//    Optional<Client> findByIdClient(int idClient);
     Client findByIdClient(int idClient);
     Optional<List<Client>> findBySexe(char sexe);
 }

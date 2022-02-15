@@ -31,8 +31,4 @@ public class ProduitServiceImpl implements FilmyService<Produit> {
         produitRepository.deleteById(id);
     }
 
-//    @Override
-//    public void deleteOne(Produit produit) {
-//        produitRepository.delete(produit);
-//    }
 }
