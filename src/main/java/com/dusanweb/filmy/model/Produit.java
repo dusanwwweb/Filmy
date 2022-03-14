@@ -2,7 +2,9 @@ package com.dusanweb.filmy.model;
 
 import com.dusanweb.filmy.utils.Genre;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -12,6 +14,8 @@ import java.util.Set;
 
 @Getter
 @Setter
+@Builder
+@RequiredArgsConstructor
 @Entity
 @Table(name = "produit")
 public class Produit {
