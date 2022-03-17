@@ -1,11 +1,9 @@
 package com.dusanweb.filmy.model;
 
 import com.dusanweb.filmy.utils.Genre;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -15,7 +13,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "produit")
 public class Produit {
@@ -28,6 +27,7 @@ public class Produit {
     @Column(name = "nom")
     private String nom;
 
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "annee_de_parution")
     private LocalDate anneeDeParution;
 
